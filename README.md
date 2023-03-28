@@ -23,8 +23,6 @@ https://github.com/RanNahmany/LidLocker/releases
 
 <br>
 
-___
-
 ## Used packages:
 * [pystray](https://github.com/moses-palmer/pystray)
 * [pillow](https://github.com/python-pillow/Pillow)
