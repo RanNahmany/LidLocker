@@ -8,7 +8,6 @@ Simply control what happens when you close your laptop lid. Go to sleep or do no
 
 
 ## States
-___
 
 ### The app's two simple states:
 
