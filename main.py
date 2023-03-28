@@ -1,12 +1,25 @@
+import sys
+import os
 import pystray
 import PIL.Image
 import subprocess
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 
 def __hex_to_dec(hex_num):
     return int(hex_num, 16)
 
 def __is_State_ON():
-    output = subprocess.check_output('powercfg /q').decode('utf-8')
+    output = subprocess.check_output('powercfg /q').decode('utf-8', errors='ignore')
     output = output.split('\n')
 
     index = 0
@@ -31,9 +44,9 @@ def __is_State_ON():
 
 
 if (__is_State_ON()):
-    image = PIL.Image.open('./images/ON-tray.png')
+    image = PIL.Image.open(resource_path('./images/ON-tray.png'))
 else:
-    image = PIL.Image.open('./images/OFF-tray.png')
+    image = PIL.Image.open(resource_path('./images/OFF-tray.png'))
 
 
 def on_State_Change(icon, item): 
@@ -42,14 +55,14 @@ def on_State_Change(icon, item):
         for command in turn_on_commands:
             subprocess.check_output(command).decode('utf-8')
 
-        icon.icon = PIL.Image.open('./images/ON-tray.png')
+        icon.icon = PIL.Image.open(resource_path('./images/ON-tray.png'))
         print ('turned on')
 
     elif (__is_State_ON() == True):
         turn_on_commands = ['powercfg -setacvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 1', 'powercfg -setdcvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 1', 'powercfg -SetActive SCHEME_CURRENT']
         for command in turn_on_commands:
             subprocess.check_output(command).decode('utf-8')
-        icon.icon = PIL.Image.open('./images/OFF-tray.png')
+        icon.icon = PIL.Image.open(resource_path('./images/OFF-tray.png'))
         print ('turned off')
 
     else:
