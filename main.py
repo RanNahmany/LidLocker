@@ -17,12 +17,7 @@ def resource_path(relative_path):
 
 def execute_command(command):
     try:
-        # si = subprocess.STARTUPINFO()
-        # si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-
         CREATE_NO_WINDOW = 0x08000000
-
-        # output = subprocess.check_output(command, startupinfo=si).decode('utf-8')
         output = subprocess.check_output(command, creationflags=CREATE_NO_WINDOW).decode('utf-8', errors='ignore')
         return output
     
@@ -34,7 +29,6 @@ def __hex_to_dec(hex_num):
     return int(hex_num, 16)
 
 def __is_State_ON():
-    # output = subprocess.check_output('powercfg /q').decode('utf-8', errors='ignore')
     output = execute_command('powercfg /q')
     output = output.split('\n')
 
@@ -69,7 +63,6 @@ def on_State_Change(icon, item):
     if (__is_State_ON() == False):
         turn_on_commands = ['powercfg -setacvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 0', 'powercfg -setdcvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 0', 'powercfg -SetActive SCHEME_CURRENT']
         for command in turn_on_commands:
-            # subprocess.check_output(command).decode('utf-8')
             execute_command(command)
 
         icon.icon = PIL.Image.open(resource_path('./images/ON-tray.png'))
@@ -78,7 +71,6 @@ def on_State_Change(icon, item):
     elif (__is_State_ON() == True):
         turn_on_commands = ['powercfg -setacvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 1', 'powercfg -setdcvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 1', 'powercfg -SetActive SCHEME_CURRENT']
         for command in turn_on_commands:
-            # subprocess.check_output(command).decode('utf-8')
             execute_command(command)
         icon.icon = PIL.Image.open(resource_path('./images/OFF-tray.png'))
         print ('turned off')
