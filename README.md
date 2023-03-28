@@ -9,7 +9,7 @@ Simply control what happens when you close your laptop lid. Go to sleep or do no
 
 ## States
 
-### The app's two simple states:
+### The app has two simple states:
 
 1. <u> OFF (Red Icon) -</u> when you close the lid, your laptop will go to sleep as the default behavior.
 2. <u> ON (Green Icon) -</u> when you close the lid, your laptop will not go to sleep and you can work on your desktop monitor.
