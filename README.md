@@ -3,7 +3,7 @@
 <!-- # LidLocker
 <img src="./images/OFF-tray.png" alt="LidLocker" width=40/> -->
 
-### The perfect app to work on your desktop monitor with close your laptop lid closed.
+### The perfect app to work on your desktop monitor with your laptop lid closed.
 
 Tiny tray app that lets you close your laptop and still work on the Monitor.
 Simply control what happens when you close your laptop lid. Go to sleep or do nothing to work on your desktop monitor.
