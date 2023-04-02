@@ -4,6 +4,7 @@ import pystray
 import PIL.Image
 import subprocess
 
+
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
@@ -82,10 +83,17 @@ def on_State_Change(icon, item):
 def __on_Exit(icon):
     icon.stop()
 
+def __icon_constructor():
+    icon = pystray.Icon('LidLocker', image, 'LidLocker By Ran Nahmany', HAS_DEFAULT_ACTION = True ,menu=pystray.Menu(
+    pystray.MenuItem('Change State', on_State_Change, default=True),
+    pystray.MenuItem('Exit', __on_Exit)
+    ))
+
+    icon.HAS_DEFAULT_ACTION = True
+
+    return icon
+
 
 if __name__ == "__main__":
-    icon = pystray.Icon('LidLocker', image, 'LidLocker By Ran Nahmany' ,menu=pystray.Menu(
-    pystray.MenuItem('Change State', on_State_Change),
-    pystray.MenuItem('Exit', __on_Exit)
-))
+    icon = __icon_constructor()
     icon.run()
