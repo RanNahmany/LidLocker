@@ -16,7 +16,7 @@ Simply control what happens when you close your laptop lid. Go to sleep or do no
 1. <u> OFF (Red Icon) -</u> when you close the lid, your laptop will go to sleep as the default behavior.
 2. <u> ON (Green Icon) -</u> when you close the lid, your laptop will not go to sleep and you can work on your desktop monitor.
 
-* Switch between the two States by right clicking the tray icon, and selecting "Change State". 
+* Switch between the two States by clicking the tray Icon. you can also use right click, and selecting "Change State".
 
 <br>
 
