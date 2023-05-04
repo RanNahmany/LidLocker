@@ -1,2 +1,6 @@
 output/
 uninstall.txt
+
+venv/
+info.txt
+
